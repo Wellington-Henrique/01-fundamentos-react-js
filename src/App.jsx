@@ -10,7 +10,7 @@ const posts = [
     author: {
       name: "Wellington Henrique",
       role: "Desenvolvedor Fullstack",
-      avatarUrl: "",
+      avatarUrl: "https://github.com/Wellington-Henrique.png",
     },
     content: [
       {
@@ -19,7 +19,7 @@ const posts = [
       },
       {
         type: "paragraph",
-        content: "Acabei de subir mais um projeto no meu portifa. É um projeto que fiz na especialização de em React da Rocketseat. 🚀"
+        content: "Acabei de subir mais um projeto no meu portifólio. É um projeto que fiz na especialização de em React da Rocketseat. 🚀"
       },
       {
         type: "link",
