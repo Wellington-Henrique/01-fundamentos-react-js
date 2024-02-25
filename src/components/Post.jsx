@@ -3,11 +3,10 @@ import { Comment } from './Comment'
 
 import styles from './Post.module.css'
 
-export function Post() {
+export function Post({author, content, publishedAt}) {
     return(
         <article className={styles.post}>
             <header>
-                
                 <div className={styles.author}>
                     <Avatar src="https://github.com/Wellington-Henrique.png"/>
 
