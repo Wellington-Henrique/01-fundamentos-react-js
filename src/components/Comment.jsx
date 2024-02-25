@@ -8,7 +8,9 @@ export function Comment({comment, onDelete}) {
     const [likeCount, setLikeCount] = useState(0)
 
     const handleLikeComment = () => {
-        setLikeCount(prev => prev+1)
+        setLikeCount((state) => {
+            return state + 1
+        })
     }
 
     return (
