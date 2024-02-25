@@ -20,17 +20,29 @@ export function Post({author, publishedAt, content}) {
         addSuffix: true
     })
 
+    const isNewCommentEmpty = currentComment.length === 0
+
     const handleChange = (e) => {
         const { value } = e.target
 
         setCurrentComment(value)
+        e.target.setCustomValidity('')
+    }
+    
+    const handleNewCommentInvalid = (e) => {
+        e.target.setCustomValidity('Este campo é obrigatório!')
     }
 
     const handleCreateNewCommit = (e) => {
         e.preventDefault()
         
-        setComments(prev => [...prev, {id: prev.length + 1, currentComment}])
+        setComments(prev => [...prev, {id: prev.length + 1, content: currentComment}])
         setCurrentComment('')
+    }
+
+    const handleDeleteComment = (id) => {
+        const commentWithoutDeletedOne = comments.filter(comment => comment.id !== id);
+        setComments(commentWithoutDeletedOne)
     }
 
     return(
@@ -65,11 +77,17 @@ export function Post({author, publishedAt, content}) {
                 <strong>Deixe seu feedback</strong>
                 <textarea 
                     placeholder='Deixe um comentário'
+                    value={currentComment}
                     onChange={handleChange}
+                    required
+                    onInvalid={handleNewCommentInvalid}
                 />
                 
                 <footer>
-                    <button type='submit'>Publicar</button>
+                    <button 
+                        type='submit'
+                        disabled={isNewCommentEmpty}
+                    >Publicar</button>
                 </footer>
             </form>
 
@@ -77,7 +95,8 @@ export function Post({author, publishedAt, content}) {
                 {comments.map(comment => 
                     <Comment 
                         key={comment.id}
-                        content={comment.comment}
+                        comment={comment}
+                        onDelete={handleDeleteComment}
                     />
                 )}
             </div>
